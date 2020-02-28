@@ -95,6 +95,13 @@ scrape_configs:
     metrics_path: /jenkins/prometheus
     static_configs:
     - targets: ['192.168.1.60:8080']
+
+  - job_name: 'spring_micrometer'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+    - targets: ['172.17.0.1:8181']
+    
 ```
 
 ## Install golang on centos 7
@@ -110,7 +117,26 @@ scrape_configs:
 
 - I searched and found `wmi_exporter` for Windows 10
 
+## Spring Boot with Prometheus
+
+Added a monitoring job to the prometheus:
+
+```
+
+  - job_name: 'spring_micrometer'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+    - targets: ['172.17.0.1:8181']
+
+```
+
 ## Import grafana
 
-- I imported grafana dashboard by searching for a number: 1860 (Prometheus node), 2129 (Windows dashboard - wmi)
-- 
+- I imported grafana dashboard by searching for a number:
+  - 1860 (Prometheus node)
+  - 2129 (Windows dashboard - wmi)
+  - 4701 (JVM monitor)
+  - 6756 (Spring Boot)
+  - 2358 (jenkins ci)
+
